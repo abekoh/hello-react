@@ -19,7 +19,9 @@ module.exports = {
       jsx: true,
     },
     ecmaVersion: 12,
+    project: './tsconfig.eslint.json',
     sourceType: 'module',
+    tsconfigRootDir: __dirname,
   },
   plugins: [
     '@typescript-eslint',
@@ -30,6 +32,7 @@ module.exports = {
   ],
   root: true,
   rules: {
+    // occur error in `import React from 'react'` with react-scripts 4.0.1
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': [
       'error',
@@ -38,8 +41,8 @@ module.exports = {
       'error',
       'always',
       {
-        exceptAfterSingleLine: true
-      }
+        exceptAfterSingleLine: true,
+      },
     ],
     'no-void': [
       'error',
@@ -73,13 +76,13 @@ module.exports = {
         jsx: 'never',
         ts: 'never',
         tsx: 'never',
-      }
+      },
     ],
     'react/jsx-filename-extension': [
       'error',
       {
-        extensions: ['.jsx', '.tsx']
-      }
+        extensions: ['.jsx', '.tsx'],
+      },
     ],
     'react/jsx-props-no-spreading': [
       'error',
@@ -99,4 +102,11 @@ module.exports = {
       },
     },
   ],
+  settings: {
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
+    },
+  },
 };
